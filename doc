@@ -1,0 +1,41 @@
+-----Aula 1------------------------------------------------------------------------------
+* Para pedir o acces token
+
+POST - localhost:8080/oauth/token
+
+INFORMAÇÕES COMPLEMENTARES
+
+AUTHORIZATION
+type = Basic Auth
+user name = (client que esta na AutorizationServerConfig) neste caso angular
+password = (secret que esta na AutorizationServerConfig) neste caso @ngul@r0
+
+Fazendo isso ele adiciona um header de nome Authorization
+
+BODY
+X-WWW-FORM-URLENCODED
+client = (client que esta na AutorizationServerConfig) neste caso angular
+username = (client que esta na ResourceServerConfig) neste caso admin
+password = (client que esta na ResourceServerConfig) neste caso admin
+grant_type = (authorizedGrantTypes que esta na AutorizationServerConfig) neste caso password
+
+Aqui ele ja adicionou outro header de nome content-type
+
+Ao enviar esta requisaicao ele recebe no body o acces-token, o tipo do tooken, quando
+expira e qual é o escopo deste token
+
+-----------------------------------------------------------------------------------------
+
+* Para acessar um recurso
+
+Escolhe-se a rota que pretende testar
+Passa-se um header chamado AUTHORIZATION com valor BEARER (Que é o tipo do token)
++ espaço + o acces-token que pegamos na rota do passo anterior. Ex.:
+BEARER a068cad1-4ce9-4307-9170-5d437ed7d656
+
+
+ Desta forma já conseguimos acessar a aplicacao por 30 minutos, o tempo que
+ vale o token, onde programamos
+
+
+-----------------------------------------------------------------------------------------
