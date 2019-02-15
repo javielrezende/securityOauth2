@@ -1,4 +1,4 @@
------Aula 1------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 * Para pedir o acces token
 
 POST - localhost:8080/oauth/token
@@ -39,3 +39,27 @@ BEARER a068cad1-4ce9-4307-9170-5d437ed7d656
 
 
 -----------------------------------------------------------------------------------------
+
+* Para receber um novo acces_token a partir do refresh_token
+
+Quando o refresh_token foi adicionado, na requisicao de um acces_token recebe-se
+no body este refresh_token. Utiliza-se entao o refresh_token para novo acces e não
+precisa-se mais do usuario e senha passando no body da requisição, porque utilizaremos
+uma rota específica para o novo token
+
+POST - localhost:8080/oauth/token
+
+INFORMAÇÕES COMPLEMENTARES
+
+AUTHORIZATION
+type = Basic Auth
+user name = (client que esta na AutorizationServerConfig) neste caso angular
+password = (secret que esta na AutorizationServerConfig) neste caso @ngul@r0
+
+BODY
+X-WWW-FORM-URLENCODED
+grant_type = refresh_token
+refresh_token = Valor que peguei na rota do acces_token anterior
+
+-----------------------------------------------------------------------------------------
+

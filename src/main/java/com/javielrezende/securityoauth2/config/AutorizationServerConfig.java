@@ -38,12 +38,21 @@ public class AutorizationServerConfig extends AuthorizationServerConfigurerAdapt
                 .withClient("angular")
                 .secret("@ngul@r0")
                 .scopes("read", "write")
-                .authorizedGrantTypes("password")
-                .accessTokenValiditySeconds(1800);
+                .authorizedGrantTypes("password", "refresh_token")
+                .accessTokenValiditySeconds(20)
+                .refreshTokenValiditySeconds(3600 * 24);
     }
 
     /**
      * Utilizado para armazenar o token
+     *
+     * .reuseRefreshTokens esta falso pelo seguinte:
+     * O refresh_token tb tem um tempo de expiração
+     * Com esse false, ao passar do tempo setado, se o usuario estiver
+     * dentro do sistema ainda, sem ter saido, ele se mantera logado
+     * sem ter que refazer o login.
+     * Se estivesse em true, isso iria acontecer
+     *
      * @param endpoints
      * @throws Exception
      */
@@ -52,6 +61,7 @@ public class AutorizationServerConfig extends AuthorizationServerConfigurerAdapt
         endpoints
                 .tokenStore(tokenStore())
                 .accessTokenConverter(accessTokenConverter())
+                .reuseRefreshTokens(false)
                 .authenticationManager(authenticationManager);
     }
 
