@@ -42,8 +42,8 @@ BEARER a068cad1-4ce9-4307-9170-5d437ed7d656
 
 * Para receber um novo acces_token a partir do refresh_token
 
-Quando o refresh_token foi adicionado, na requisicao de um acces_token recebe-se
-no body este refresh_token. Utiliza-se entao o refresh_token para novo acces e não
+Quando o refresh_token foi adicionado, na requisicao de um acces_token recebia-se
+no body este refresh_token. Agora é recebido por um cookie. Utiliza-se entao o refresh_token para novo access e não
 precisa-se mais do usuario e senha passando no body da requisição, porque utilizaremos
 uma rota específica para o novo token
 
