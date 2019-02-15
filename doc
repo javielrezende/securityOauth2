@@ -47,6 +47,12 @@ no body este refresh_token. Agora é recebido por um cookie. Utiliza-se entao o 
 precisa-se mais do usuario e senha passando no body da requisição, porque utilizaremos
 uma rota específica para o novo token
 
+Nota: antes desta aula passavamos o refresh token pelo body desta requisicao, agora
+com a implementacao que fizemos, o programa identifica que existe um cookie com refresh token
+e ja adiciona automaticamente, sem ser necessario enviar por aqui...
+Por isso aqui no body não há mais o:
+refresh_token = Valor que peguei na rota do acces_token anterior
+
 POST - localhost:8080/oauth/token
 
 INFORMAÇÕES COMPLEMENTARES
@@ -59,7 +65,6 @@ password = (secret que esta na AutorizationServerConfig) neste caso @ngul@r0
 BODY
 X-WWW-FORM-URLENCODED
 grant_type = refresh_token
-refresh_token = Valor que peguei na rota do acces_token anterior
 
 -----------------------------------------------------------------------------------------
 
