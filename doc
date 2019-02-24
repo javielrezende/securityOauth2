@@ -68,3 +68,25 @@ grant_type = refresh_token
 
 -----------------------------------------------------------------------------------------
 
+Apos adicionar a anotacao:
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+
+e adicionar o método:
+    @Bean
+    public MethodSecurityExpressionHandler createExpressionHandler(){
+        return new OAuth2MethodSecurityExpressionHandler();
+    }
+
+na classe ResourceServerConfig, ja tem-se a possibilidade de realizar as autorizações.
+Para realizar as autorizações coloca-se em cada método a anotação:
+@PreAuthorize().
+Dentro do parêntese coloca-se:
+"hasAuthority('ROLE_TAL...')"
+a ROLE é a que está salva no banco de dados.
+
+Para utilizar os scopos (leitura, escrita, etc...) faz-se o seguinte:
+IMPORTANTE: OS ESCOPOS SAO REFERENTES AOS CLIENTES (WEB, MOBILE, ETC)...
+POR ISSO UM PODE LER, OUTRO ESCREVER, ETC...
+Na mesma anotação acima:
+@PreAuthorize("hasAuthority('ROLE_TAL...') and #oauth2.hasScope('read')").
+Assim sucesivamente em todos os metodos
