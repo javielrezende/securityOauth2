@@ -90,3 +90,9 @@ POR ISSO UM PODE LER, OUTRO ESCREVER, ETC...
 Na mesma anotação acima:
 @PreAuthorize("hasAuthority('ROLE_TAL...') and #oauth2.hasScope('read')").
 Assim sucesivamente em todos os metodos
+
+-----------------------------------------------------------------------------------------
+
+* Para realizar o logout, elimina-se o cookie com o refresh token
+
+DELETE - localhost:8080/tokens/revoke
